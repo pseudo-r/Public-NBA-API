@@ -6,6 +6,49 @@
 
 ---
 
+## ☕ Support This Project
+If this documentation has saved you time, consider supporting ongoing development and maintenance:
+
+| Platform | Link |
+|----------|------|
+| ☕ Buy Me a Coffee | [buymeacoffee.com/pseudo_r](https://buymeacoffee.com/pseudo_r) |
+| 💖 GitHub Sponsors | [github.com/sponsors/Kloverdevs](https://github.com/sponsors/Kloverdevs) |
+| 💳 PayPal Donate | [PayPal (CAD)](https://www.paypal.com/donate/?business=H5VPFZ2EHVNBU&no_recurring=0&currency_code=CAD) |
+
+Every contribution helps keep this project updated as the NBA changes their API.
+
+---
+
+## 📱 Real-World Apps Built With This API
+These apps are live examples of what you can build using this documentation and the included Django service:
+
+### 🏀 [Sportly: Basketball Live](https://play.google.com/store/apps/details?id=com.sportly.basketball)
+> Real-time NBA, college basketball, and international leagues — scores, standings, player stats, and live game tracking.
+
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Basketball-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.basketball)
+
+### ⚽ [Sportly: Soccer Live](https://play.google.com/store/apps/details?id=com.sportly.soccer)
+> Premier League, La Liga, Bundesliga, Serie A, MLS, and more — live scores, tables, fixtures, and news.
+
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Soccer-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.soccer)
+
+### 🏒 [Sportly: NHL & Hockey Live](https://play.google.com/store/apps/details?id=com.sportly.hockey)
+> Live NHL scores, standings, game stats, and hockey data across leagues.
+
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Hockey-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.hockey)
+
+### 🏈 [Sportly: American Football Live](https://play.google.com/store/apps/details?id=com.sportly.football)
+> NFL scores, standings, play-by-play, and college football coverage.
+
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Football-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.football)
+
+### ⚾ [Sportly: Baseball Live](https://play.google.com/store/apps/details?id=com.sportly.baseball)
+> MLB scores, box scores, standings, and baseball stats.
+
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Baseball-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.baseball)
+
+---
+
 ## Table of Contents
 
 - [Base URL](#base-url)
