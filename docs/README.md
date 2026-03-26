@@ -26,6 +26,7 @@
 | [draft_combine_endpoints.md](draft_combine_endpoints.md) | Draft Combine Stats, Anthro, Drills, Spot Shooting, Non-Stationary Shooting, Draft Board |
 | [parameters.md](parameters.md) | Full parameter reference — MeasureType, SeasonType, PerMode, all filters, column definitions |
 | [versions.md](versions.md) | **Live-tested** v1 / v2 / v3 format comparison — response shapes, field names, parse patterns |
+| [additional_domains.md](additional_domains.md) | All discovered domains and subdomains — `data.nba.com`, `cdn.nba.com`, `nba.cloud` (internal), `api.nba.com`, `feeds.nba.com` |
 
 ---
 
