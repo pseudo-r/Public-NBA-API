@@ -25,7 +25,7 @@ The NBA's data infrastructure spans several domains beyond the primary stats API
 
 **Accessibility:** Public (WAF-gated)
 
-The main subject of this documentation. Serves all historical, analytical, and aggregated statistical data. Requires specific HTTP headers to bypass the WAF:
+The main subject of this documentation. Serves all historical, analytical, and aggregated statistical data. The following headers have been observed in website requests. They do not confer permission or guarantee access. Respect access denials and do not circumvent the WAF:
 
 ```
 Referer: https://www.nba.com/
