@@ -190,10 +190,7 @@ class Game(TimestampMixin):
         ordering = ["-game_date", "nba_id"]
 
     def __str__(self) -> str:
-        return (
-            f"{self.away_team_abbreviation} @ {self.home_team_abbreviation} "
-            f"({self.game_date})"
-        )
+        return f"{self.away_team_abbreviation} @ {self.home_team_abbreviation} ({self.game_date})"
 
 
 class PlayerGameLog(TimestampMixin):
@@ -315,8 +312,7 @@ class TeamStanding(TimestampMixin):
 
     def __str__(self) -> str:
         return (
-            f"{self.team.abbreviation} {self.wins}-{self.losses} "
-            f"({self.season} {self.season_type})"
+            f"{self.team.abbreviation} {self.wins}-{self.losses} ({self.season} {self.season_type})"
         )
 
 
@@ -357,9 +353,7 @@ class PlayerSeasonStats(TimestampMixin):
 
     class Meta:
         ordering = ["-season", "player_name"]
-        unique_together = [
-            ["player_nba_id", "season", "season_type", "measure_type", "per_mode"]
-        ]
+        unique_together = [["player_nba_id", "season", "season_type", "measure_type", "per_mode"]]
 
     def __str__(self) -> str:
         return (
@@ -395,9 +389,7 @@ class TeamSeasonStats(TimestampMixin):
 
     class Meta:
         ordering = ["-season", "team_name"]
-        unique_together = [
-            ["team_nba_id", "season", "season_type", "measure_type", "per_mode"]
-        ]
+        unique_together = [["team_nba_id", "season", "season_type", "measure_type", "per_mode"]]
 
     def __str__(self) -> str:
         return (

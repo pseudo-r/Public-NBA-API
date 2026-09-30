@@ -26,17 +26,21 @@ class GameFilter(django_filters.FilterSet):
     date = django_filters.DateFilter(field_name="game_date")
     date_from = django_filters.DateFilter(field_name="game_date", lookup_expr="gte")
     date_to = django_filters.DateFilter(field_name="game_date", lookup_expr="lte")
-    home_team = django_filters.CharFilter(
-        field_name="home_team_abbreviation", lookup_expr="iexact"
-    )
-    away_team = django_filters.CharFilter(
-        field_name="away_team_abbreviation", lookup_expr="iexact"
-    )
+    home_team = django_filters.CharFilter(field_name="home_team_abbreviation", lookup_expr="iexact")
+    away_team = django_filters.CharFilter(field_name="away_team_abbreviation", lookup_expr="iexact")
 
     class Meta:
         model = Game
-        fields = ["season", "season_type", "status", "date", "date_from", "date_to",
-                  "home_team", "away_team"]
+        fields = [
+            "season",
+            "season_type",
+            "status",
+            "date",
+            "date_from",
+            "date_to",
+            "home_team",
+            "away_team",
+        ]
 
 
 class PlayerGameLogFilter(django_filters.FilterSet):

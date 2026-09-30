@@ -65,7 +65,9 @@ class TeamViewSet(viewsets.ReadOnlyModelViewSet):
         tags=["Teams"],
         summary="List NBA teams",
         parameters=[
-            OpenApiParameter("conference", description="Filter by conference (East/West)", type=str),
+            OpenApiParameter(
+                "conference", description="Filter by conference (East/West)", type=str
+            ),
             OpenApiParameter("division", description="Filter by division name", type=str),
             OpenApiParameter("is_active", description="Filter active teams (true/false)", type=str),
             OpenApiParameter("search", description="Search team name/abbreviation/city", type=str),
@@ -111,10 +113,16 @@ class PlayerViewSet(viewsets.ReadOnlyModelViewSet):
         tags=["Players"],
         summary="List NBA players",
         parameters=[
-            OpenApiParameter("team", description="Filter by team abbreviation (e.g., LAL)", type=str),
-            OpenApiParameter("position", description="Filter by position (G, F, C, etc.)", type=str),
+            OpenApiParameter(
+                "team", description="Filter by team abbreviation (e.g., LAL)", type=str
+            ),
+            OpenApiParameter(
+                "position", description="Filter by position (G, F, C, etc.)", type=str
+            ),
             OpenApiParameter("country", description="Filter by country", type=str),
-            OpenApiParameter("is_active", description="Filter active players (true/false)", type=str),
+            OpenApiParameter(
+                "is_active", description="Filter active players (true/false)", type=str
+            ),
             OpenApiParameter("search", description="Search player name", type=str),
         ],
     )
@@ -173,7 +181,9 @@ class GameViewSet(viewsets.ReadOnlyModelViewSet):
         summary="List games",
         parameters=[
             OpenApiParameter("season", description="Season string (e.g., 2024-25)", type=str),
-            OpenApiParameter("season_type", description="Regular Season / Playoffs / Pre Season", type=str),
+            OpenApiParameter(
+                "season_type", description="Regular Season / Playoffs / Pre Season", type=str
+            ),
             OpenApiParameter("status", description="scheduled / in_progress / final", type=str),
             OpenApiParameter("date", description="Exact game date (YYYY-MM-DD)", type=str),
             OpenApiParameter("date_from", description="Games on or after (YYYY-MM-DD)", type=str),
@@ -289,8 +299,12 @@ class PlayerSeasonStatsViewSet(viewsets.ReadOnlyModelViewSet):
             OpenApiParameter("player_id", description="NBA player ID", type=str),
             OpenApiParameter("season", description="Season string (e.g., 2024-25)", type=str),
             OpenApiParameter("season_type", description="Regular Season / Playoffs", type=str),
-            OpenApiParameter("measure_type", description="Base / Advanced / Misc / Defense / Usage", type=str),
-            OpenApiParameter("per_mode", description="PerGame / Totals / Per100Possessions", type=str),
+            OpenApiParameter(
+                "measure_type", description="Base / Advanced / Misc / Defense / Usage", type=str
+            ),
+            OpenApiParameter(
+                "per_mode", description="PerGame / Totals / Per100Possessions", type=str
+            ),
             OpenApiParameter("team", description="Team abbreviation", type=str),
             OpenApiParameter("search", description="Search player name", type=str),
         ],
@@ -322,8 +336,12 @@ class TeamSeasonStatsViewSet(viewsets.ReadOnlyModelViewSet):
             OpenApiParameter("team_id", description="NBA team ID", type=str),
             OpenApiParameter("season", description="Season string (e.g., 2024-25)", type=str),
             OpenApiParameter("season_type", description="Regular Season / Playoffs", type=str),
-            OpenApiParameter("measure_type", description="Base / Advanced / Four Factors / Defense", type=str),
-            OpenApiParameter("per_mode", description="PerGame / Totals / Per100Possessions", type=str),
+            OpenApiParameter(
+                "measure_type", description="Base / Advanced / Four Factors / Defense", type=str
+            ),
+            OpenApiParameter(
+                "per_mode", description="PerGame / Totals / Per100Possessions", type=str
+            ),
             OpenApiParameter("search", description="Search team name", type=str),
         ],
     )

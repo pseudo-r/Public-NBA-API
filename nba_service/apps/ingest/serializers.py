@@ -65,7 +65,16 @@ class IngestPlayerStatsRequestSerializer(serializers.Serializer):
         default="Regular Season",
     )
     measure_type = serializers.ChoiceField(
-        choices=["Base", "Advanced", "Misc", "Four Factors", "Scoring", "Opponent", "Usage", "Defense"],
+        choices=[
+            "Base",
+            "Advanced",
+            "Misc",
+            "Four Factors",
+            "Scoring",
+            "Opponent",
+            "Usage",
+            "Defense",
+        ],
         default="Base",
     )
     per_mode = serializers.ChoiceField(

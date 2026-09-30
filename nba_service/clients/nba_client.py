@@ -280,9 +280,7 @@ class NBAClient:
             params={"PlayerID": str(player_id), "LeagueID": "00"},
         )
 
-    def get_player_career_stats(
-        self, player_id: int, per_mode: str = "PerGame"
-    ) -> NBAResponse:
+    def get_player_career_stats(self, player_id: int, per_mode: str = "PerGame") -> NBAResponse:
         """Season-by-season and career totals for a player.
 
         Args:
@@ -740,7 +738,6 @@ class NBAClient:
     def get_live_play_by_play(self, game_id: str) -> NBAResponse:
         """CDN game actions; data is under game.actions."""
         return self._get_live(f"playbyplay/playbyplay_{game_id}")
-
 
     def close(self) -> None:
         """Close the underlying httpx client."""

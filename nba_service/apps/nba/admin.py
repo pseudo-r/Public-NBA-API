@@ -31,8 +31,14 @@ class PlayerAdmin(admin.ModelAdmin):
 @admin.register(Game)
 class GameAdmin(admin.ModelAdmin):
     list_display = [
-        "nba_id", "away_team_abbreviation", "home_team_abbreviation",
-        "away_score", "home_score", "game_date", "season", "status",
+        "nba_id",
+        "away_team_abbreviation",
+        "home_team_abbreviation",
+        "away_score",
+        "home_score",
+        "game_date",
+        "season",
+        "status",
     ]
     list_filter = ["season", "season_type", "status"]
     search_fields = ["nba_id", "home_team_abbreviation", "away_team_abbreviation"]
@@ -51,8 +57,14 @@ class PlayerGameLogAdmin(admin.ModelAdmin):
 @admin.register(TeamStanding)
 class TeamStandingAdmin(admin.ModelAdmin):
     list_display = [
-        "team", "season", "season_type", "conference",
-        "wins", "losses", "win_pct", "conference_rank",
+        "team",
+        "season",
+        "season_type",
+        "conference",
+        "wins",
+        "losses",
+        "win_pct",
+        "conference_rank",
     ]
     list_filter = ["season", "season_type", "conference"]
     raw_id_fields = ["team"]
@@ -61,8 +73,12 @@ class TeamStandingAdmin(admin.ModelAdmin):
 @admin.register(PlayerSeasonStats)
 class PlayerSeasonStatsAdmin(admin.ModelAdmin):
     list_display = [
-        "player_name", "team_abbreviation", "season",
-        "season_type", "measure_type", "per_mode",
+        "player_name",
+        "team_abbreviation",
+        "season",
+        "season_type",
+        "measure_type",
+        "per_mode",
     ]
     list_filter = ["season", "season_type", "measure_type", "per_mode"]
     search_fields = ["player_name", "player_nba_id"]
@@ -71,8 +87,12 @@ class PlayerSeasonStatsAdmin(admin.ModelAdmin):
 @admin.register(TeamSeasonStats)
 class TeamSeasonStatsAdmin(admin.ModelAdmin):
     list_display = [
-        "team_name", "team_abbreviation", "season",
-        "season_type", "measure_type", "per_mode",
+        "team_name",
+        "team_abbreviation",
+        "season",
+        "season_type",
+        "measure_type",
+        "per_mode",
     ]
     list_filter = ["season", "season_type", "measure_type", "per_mode"]
     search_fields = ["team_name", "team_nba_id"]

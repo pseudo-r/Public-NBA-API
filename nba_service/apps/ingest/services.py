@@ -249,7 +249,9 @@ class ScoreboardIngestionService:
                     except (ValueError, TypeError):
                         parsed_date = date_cls.fromisoformat(game_date)
 
-                    status = self._parse_status(gh.get("GAME_STATUS_ID"), gh.get("GAME_STATUS_TEXT", ""))
+                    status = self._parse_status(
+                        gh.get("GAME_STATUS_ID"), gh.get("GAME_STATUS_TEXT", "")
+                    )
 
                     _, created = Game.objects.update_or_create(
                         nba_id=nba_id,
@@ -393,7 +395,9 @@ class PlayerGameLogIngestionService:
         try:
             player_obj = Player.objects.filter(nba_id=str(player_id)).first()
             if not player_obj:
-                raise IngestionError(f"Player {player_id} not found in database. Ingest players first.")
+                raise IngestionError(
+                    f"Player {player_id} not found in database. Ingest players first."
+                )
 
             response = self.client.get_player_game_log(player_id, season, season_type)
             rows = response.named_result_set("PlayerGameLog")
@@ -508,10 +512,19 @@ class PlayerStatsIngestionService:
                     team_obj = Team.objects.filter(abbreviation__iexact=team_abbr).first()
 
                     # Extract the most analytical columns as top-level stats
-                    stats = {k: v for k, v in row.items() if k not in (
-                        "PLAYER_ID", "PLAYER_NAME", "PLAYER_NAME_LAST_FIRST",
-                        "TEAM_ID", "TEAM_ABBREVIATION", "AGE",
-                    )}
+                    stats = {
+                        k: v
+                        for k, v in row.items()
+                        if k
+                        not in (
+                            "PLAYER_ID",
+                            "PLAYER_NAME",
+                            "PLAYER_NAME_LAST_FIRST",
+                            "TEAM_ID",
+                            "TEAM_ABBREVIATION",
+                            "AGE",
+                        )
+                    }
 
                     _, created = PlayerSeasonStats.objects.update_or_create(
                         player_nba_id=player_id,
@@ -586,10 +599,18 @@ class TeamStatsIngestionService:
                     team_obj = Team.objects.filter(nba_id=team_id).first()
                     team_abbr = row.get("TEAM_ABBREVIATION", "")
 
-                    stats = {k: v for k, v in row.items() if k not in (
-                        "TEAM_ID", "TEAM_NAME", "TEAM_ABBREVIATION",
-                        "CFID", "CFPARAMS",
-                    )}
+                    stats = {
+                        k: v
+                        for k, v in row.items()
+                        if k
+                        not in (
+                            "TEAM_ID",
+                            "TEAM_NAME",
+                            "TEAM_ABBREVIATION",
+                            "CFID",
+                            "CFPARAMS",
+                        )
+                    }
 
                     _, created = TeamSeasonStats.objects.update_or_create(
                         team_nba_id=team_id,

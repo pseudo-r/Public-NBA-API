@@ -93,7 +93,9 @@ def refresh_player_game_log_task(
 
     try:
         result = PlayerGameLogIngestionService().ingest_game_log(player_id, season, season_type)
-        logger.info("game_log_task_completed", player_id=player_id, season=season, **result.to_dict())
+        logger.info(
+            "game_log_task_completed", player_id=player_id, season=season, **result.to_dict()
+        )
         return result.to_dict()
     except Exception as exc:
         logger.error("game_log_task_failed", player_id=player_id, error=str(exc))
