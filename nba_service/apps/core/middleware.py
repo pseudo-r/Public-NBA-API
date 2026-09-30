@@ -1,7 +1,7 @@
 """Core middleware: request ID injection and structured access logging."""
 
 import uuid
-from typing import Callable
+from collections.abc import Callable
 
 import structlog
 from django.http import HttpRequest, HttpResponse

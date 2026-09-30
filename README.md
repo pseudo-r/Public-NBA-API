@@ -1,5 +1,7 @@
 # NBA Stats Public API Documentation
 
+Service maintenance: [September 2026 audit, new routes, verification, and limitations](docs/audit-2026-09-30.md).
+
 > Unofficial documentation for the NBA Stats API (`stats.nba.com`) — endpoints, required headers, parameters, and real examples.
 
 **Disclaimer:** This is documentation for an undocumented public API. Not affiliated with the NBA. Use responsibly.

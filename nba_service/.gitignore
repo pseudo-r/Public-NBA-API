@@ -39,7 +39,6 @@ htmlcov/
 *.swo
 
 # Docker
-.dockerignore
 
 # OS
 .DS_Store

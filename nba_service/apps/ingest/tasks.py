@@ -8,7 +8,6 @@ from __future__ import annotations
 from datetime import date
 
 import structlog
-
 from celery import shared_task
 
 logger = structlog.get_logger(__name__)

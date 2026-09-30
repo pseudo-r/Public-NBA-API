@@ -1,8 +1,6 @@
 """pytest configuration for nba_service."""
 
-import django
 import pytest
-from django.conf import settings
 
 
 @pytest.fixture(autouse=True)

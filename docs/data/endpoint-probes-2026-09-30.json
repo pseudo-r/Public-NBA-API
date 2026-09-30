@@ -1,0 +1,23 @@
+[
+  {
+    "url": "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",
+    "checked_at": "2026-09-30T14:20:07.856432+00:00",
+    "status": 403,
+    "content_type": "text/html",
+    "json": false
+  },
+  {
+    "url": "https://cdn.nba.com/static/json/liveData/boxscore/boxscore_0022500001.json",
+    "checked_at": "2026-09-30T14:20:08.014124+00:00",
+    "status": 403,
+    "content_type": "text/html",
+    "json": false
+  },
+  {
+    "url": "https://cdn.nba.com/static/json/liveData/playbyplay/playbyplay_0022500001.json",
+    "checked_at": "2026-09-30T14:20:08.578646+00:00",
+    "status": 403,
+    "content_type": "text/html",
+    "json": false
+  }
+]

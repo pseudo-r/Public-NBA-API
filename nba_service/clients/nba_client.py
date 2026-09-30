@@ -15,7 +15,6 @@ Usage:
 
 from __future__ import annotations
 
-import logging
 from dataclasses import dataclass
 from typing import Any
 
@@ -47,7 +46,7 @@ class NBAResponse:
         rs = result_sets[index]
         headers = rs.get("headers", [])
         rows = rs.get("rowSet", [])
-        return [dict(zip(headers, row)) for row in rows]
+        return [dict(zip(headers, row, strict=True)) for row in rows]
 
     def named_result_set(self, name: str) -> list[dict[str, Any]]:
         """Find a resultSet by name and convert to list of dicts."""
@@ -56,14 +55,14 @@ class NBAResponse:
             if rs.get("name") == name:
                 headers = rs.get("headers", [])
                 rows = rs.get("rowSet", [])
-                return [dict(zip(headers, row)) for row in rows]
+                return [dict(zip(headers, row, strict=True)) for row in rows]
         return []
 
     def all_result_sets(self) -> dict[str, list[dict[str, Any]]]:
         """Return all resultSets as a name → list[dict] mapping."""
         result_sets = self.data.get("resultSets") or []
         return {
-            rs["name"]: [dict(zip(rs["headers"], row)) for row in rs.get("rowSet", [])]
+            rs["name"]: [dict(zip(rs["headers"], row, strict=True)) for row in rs.get("rowSet", [])]
             for rs in result_sets
             if "name" in rs and "headers" in rs
         }
@@ -74,7 +73,7 @@ class NBAResponse:
         rs = self.data.get("resultSet") or {}
         headers = rs.get("headers", [])
         rows = rs.get("rowSet", [])
-        return [dict(zip(headers, row)) for row in rows]
+        return [dict(zip(headers, row, strict=True)) for row in rows]
 
 
 class NBAClientError(Exception):
@@ -723,11 +722,31 @@ class NBAClient:
             },
         )
 
+    def _get_live(self, resource: str) -> NBAResponse:
+        """Read the public live-data CDN without Stats-specific Host headers."""
+        with httpx.Client(timeout=30.0, follow_redirects=True) as client:
+            response = client.get(f"https://cdn.nba.com/static/json/liveData/{resource}.json")
+            response.raise_for_status()
+            return NBAResponse(data=response.json(), status_code=response.status_code)
+
+    def get_live_scoreboard(self) -> NBAResponse:
+        """Today's CDN scoreboard; data is under scoreboard.games, not resultSets."""
+        return self._get_live("scoreboard/todaysScoreboard_00")
+
+    def get_live_boxscore(self, game_id: str) -> NBAResponse:
+        """CDN game boxscore; data is under game."""
+        return self._get_live(f"boxscore/boxscore_{game_id}")
+
+    def get_live_play_by_play(self, game_id: str) -> NBAResponse:
+        """CDN game actions; data is under game.actions."""
+        return self._get_live(f"playbyplay/playbyplay_{game_id}")
+
+
     def close(self) -> None:
         """Close the underlying httpx client."""
         self._client.close()
 
-    def __enter__(self) -> "NBAClient":
+    def __enter__(self) -> NBAClient:
         return self
 
     def __exit__(self, *args: Any) -> None:

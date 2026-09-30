@@ -3,8 +3,10 @@
 from datetime import date
 
 import structlog
+from django.conf import settings
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
+from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -12,8 +14,8 @@ from rest_framework.views import APIView
 from apps.ingest.serializers import (
     IngestionResultSerializer,
     IngestPlayerGameLogRequestSerializer,
-    IngestPlayerStatsRequestSerializer,
     IngestPlayersRequestSerializer,
+    IngestPlayerStatsRequestSerializer,
     IngestScoreboardRequestSerializer,
     IngestStandingsRequestSerializer,
     IngestTeamStatsRequestSerializer,
@@ -31,7 +33,15 @@ from apps.ingest.services import (
 logger = structlog.get_logger(__name__)
 
 
-class IngestScoreboardView(APIView):
+class IngestionView(APIView):
+    """Staff-only ingestion; opt-out is intended for isolated tests only."""
+
+    def get_permissions(self):
+        permission = IsAdminUser if getattr(settings, "INGEST_REQUIRE_STAFF", True) else AllowAny
+        return [permission()]
+
+
+class IngestScoreboardView(IngestionView):
     """Trigger scoreboard ingestion for a date."""
 
     @extend_schema(
@@ -56,7 +66,7 @@ class IngestScoreboardView(APIView):
         return Response(IngestionResultSerializer(result.to_dict()).data, status=status.HTTP_200_OK)
 
 
-class IngestTeamsView(APIView):
+class IngestTeamsView(IngestionView):
     """Trigger team list ingestion."""
 
     @extend_schema(
@@ -71,7 +81,7 @@ class IngestTeamsView(APIView):
         return Response(IngestionResultSerializer(result.to_dict()).data, status=status.HTTP_200_OK)
 
 
-class IngestPlayersView(APIView):
+class IngestPlayersView(IngestionView):
     """Trigger player ingestion for a season."""
 
     @extend_schema(
@@ -93,7 +103,7 @@ class IngestPlayersView(APIView):
         return Response(IngestionResultSerializer(result.to_dict()).data, status=status.HTTP_200_OK)
 
 
-class IngestStandingsView(APIView):
+class IngestStandingsView(IngestionView):
     """Trigger standings ingestion for a season."""
 
     @extend_schema(
@@ -115,7 +125,7 @@ class IngestStandingsView(APIView):
         return Response(IngestionResultSerializer(result.to_dict()).data, status=status.HTTP_200_OK)
 
 
-class IngestPlayerGameLogView(APIView):
+class IngestPlayerGameLogView(IngestionView):
     """Trigger game log ingestion for a specific player."""
 
     @extend_schema(
@@ -141,7 +151,7 @@ class IngestPlayerGameLogView(APIView):
         return Response(IngestionResultSerializer(result.to_dict()).data, status=status.HTTP_200_OK)
 
 
-class IngestPlayerStatsView(APIView):
+class IngestPlayerStatsView(IngestionView):
     """Trigger league-wide player stats ingestion."""
 
     @extend_schema(
@@ -169,7 +179,7 @@ class IngestPlayerStatsView(APIView):
         return Response(IngestionResultSerializer(result.to_dict()).data, status=status.HTTP_200_OK)
 
 
-class IngestTeamStatsView(APIView):
+class IngestTeamStatsView(IngestionView):
     """Trigger league-wide team stats ingestion."""
 
     @extend_schema(

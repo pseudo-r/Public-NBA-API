@@ -200,7 +200,7 @@ class ScoreboardIngestionService:
     def __init__(self, client=None):
         self.client = client or get_nba_client()
 
-    def _parse_status(self, status_num: int | None, clock: str) -> str:
+    def _parse_status(self, status_num: int | None, clock: str) -> str:  # noqa: ARG002
         if status_num == 1:
             return Game.STATUS_SCHEDULED
         if status_num == 2:
